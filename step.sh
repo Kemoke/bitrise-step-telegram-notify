@@ -21,9 +21,9 @@ set -ex
 #  with a 0 exit code `bitrise` will register your Step as "successful".
 # Any non zero exit code will be registered as "failed" by `bitrise`.
 
-MESSAGE="🛑 *$BITRISE_APP_TITLE*: build $BITRISE_BUILD_NUMBER failed 😕 \nURL: $BITRISE_APP_URL\nCommit: $BITRISE_GIT_MESSAGE \n\n $custom_message"
+MESSAGE="🛑 *$BITRISE_APP_TITLE*: build $BITRISE_BUILD_NUMBER failed 😕 \nURL: $BITRISE_APP_URL \n\n $custom_message"
 
-if [ $BITRISE_BUILD_STATUS -eq 0 ] ; then MESSAGE="✅ *$BITRISE_APP_TITLE*: build $BITRISE_BUILD_NUMBER passed! 🎉\nCommit: $BITRISE_GIT_MESSAGE\n Download URL ⬇️: $download_url\n\n $custom_message" ; fi
+if [ $BITRISE_BUILD_STATUS -eq 0 ] ; then MESSAGE="✅ *$BITRISE_APP_TITLE*: build $BITRISE_BUILD_NUMBER passed! 🎉\n Download URL ⬇️: $download_url\n\n $custom_message" ; fi
 
 curl -X POST -H "Content-Type: application/json" -d "{ \"chat_id\": \"$telegram_chat_id\", \"text\":\"$MESSAGE\", \"parse_mode\": \"markdown\", \"disable_web_page_preview\": \"true\" }" https://api.telegram.org/bot$telegram_bot_token/sendMessage
 
